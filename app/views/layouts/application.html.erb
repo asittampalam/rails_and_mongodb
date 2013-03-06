@@ -2,25 +2,15 @@
 <html>
 <head>
   <title>FirstSteps</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <div id="container">
-          <%if flash[:notice]%>
-            <p id="notice">
-              <%= flash[:notice] %>
-            </p>
-         <%end%>
-         <%if flash[:alert]%>
-              <p id="alert">
-                <%= flash[:alert] %>
-              </p>
-          <%end%>
-            <%= yield %>
-
-    </div>
+<%= render partial: "shared/flashes", flash: flash %>
+<div class="container">
+    <%= yield %>
+</div>
     <div id="footer">
       <%if user_signed_in? %>
         <%= link_to "logout", logout_path, method: :delete %>

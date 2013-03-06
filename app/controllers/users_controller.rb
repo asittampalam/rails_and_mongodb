@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to "/",
-                  notice: "Registration erfolgreich!"
+      flash[:success]= "Registration erfolgreich!"
+      redirect_to "/"
     else
-      flash.now.alert = "Fehlerhafte Daten!"
+      flash[:error] = "Fehlerhafte Daten!"
       render "new"
     end
   end
