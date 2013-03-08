@@ -1,23 +1,30 @@
-<%# maybe I should put this modal into the main layout, and then load the content via ajax to maintain the DRY principle%>
-<p><a href="#registrationModal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Register</a></p>
 <% if(flash[:registration_modal]) %>
     <script>
         $(document).ready(
                 function() {
-                    $("#registrationModal").removeClass('hide fade').modal('show'); //addClass('hide fade') funktioniert nicht... why?!
-
+                    $("#registrationModal").modal('show');
                 }
         );
+
+
     </script>
 <% end %>
-<div id="registrationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="hero-unit">
+    <h1>Welcome, Biatch!</h1>
+    <p>Please register, if you are seriously bored.</p>
+    <p><p><a href="#registrationModal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Register</a></p>
+  </p>
+</div>
+<div id="registrationModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header" >
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Registration</h3>
   </div>
   <%= form_for(@user, class: 'form-horizontal') do |f| %>
       <div class="modal-body">
+        <%if flash[:registration_modal]%>
         <%= render partial: "shared/flashes", flash: flash %>
+        <% end %>
         <div class="control-group">
           <!--<%= f.label(I18n.translate(:username)) %>-->
           <%= f.text_field(:username, placeholder: I18n.translate(:username)) %>

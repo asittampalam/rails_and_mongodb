@@ -1,0 +1,11 @@
+<%form_for(post, class: 'form-horizontal') do |f| %>
+    <div class="controlgroup">
+        <%= f.text_field(:title, placeholder: I18n.translate(:post_title)) %>
+    </div>
+    <div class="controlgroup">
+        <%=  f.text_field(:message, placeholder: I18n.translate(:post_message)) %>
+    </div>
+    <div class="controls">
+        <%=  f.submit(value: I18n.translate(:post_submit), class: 'btn btn-primary') %>
+    </div>
+<% end %>

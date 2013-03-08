@@ -1,4 +1,6 @@
 FirstSteps::Application.routes.draw do
+  get "walls/show"
+
   get "publicpages/public_index"
 
   resources :users, only: [:new, :create]
