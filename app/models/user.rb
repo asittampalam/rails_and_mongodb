@@ -1,7 +1,7 @@
 class User
+	include Mongoid::Document
 	embeds_one :wall
   include ActiveModel::SecurePassword
-  include Mongoid::Document
   field :username, type: String
   field :password_digest, type: String
   has_secure_password
