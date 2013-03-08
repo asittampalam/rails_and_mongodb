@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       redirect_to "/"
     else
       flash[:error] = "Fehlerhafte Daten!"
+      flash[:registration_modal] = true
       render "new"
     end
   end
@@ -24,5 +25,4 @@ class UsersController < ApplicationController
       redirect_to login_path, alert:"Bitte anmelden."
     end
   end
-
 end

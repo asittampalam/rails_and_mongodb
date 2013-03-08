@@ -12,30 +12,26 @@
     <div class="container">
         <ul class="nav">
           <li class="brand">Whatever</li>
-          <li><a href="#"> Index</a></li>
-          <li><a href="#">All users</a></li>
+          <li><a href= "<%=all_users_path%>" >All users</a></li>
         </ul>
-        <% unless @current_user.present? %>
+        <% unless user_signed_in? %>
             <%= form_tag({controller: 'sessions', action: 'create'}, {method: 'post', class: 'navbar-form pull-right'}) do %>
                 <%= text_field_tag(:username, I18n.translate(:username), {class: 'input-small'}) %>
                 <%= password_field_tag(:password,  I18n.translate(:password), {class: 'input-small'}) %>
                 <%= submit_tag(I18n.translate(:login_submit), {class: 'btn'}) %>
             <% end %>
+            <% else %>
+                <%= link_to "logout", logout_path, {method: :delete, class: 'btn pull-right'} %>
          <% end %>
     </div>
   </div>
 </div>
-
-<%= render partial: "shared/flashes", flash: flash %>
-
+<%unless flash[:registration_modal]%>
+    <%= render partial: "shared/flashes", flash: flash %>
+<% end %>
 <div class="container">
     <%= yield %>
 </div>
-    <div id="footer">
-      <%if user_signed_in? %>
-        <%= link_to "logout", logout_path, method: :delete %>
-      <%end%>
-  </div>
 
 </body>
 

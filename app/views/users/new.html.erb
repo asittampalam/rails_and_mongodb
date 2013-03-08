@@ -1,16 +1,39 @@
-<h1>Registration</h1>
-<%= form_for @user do |f| %>
-    <p>
-      <%= f.label :username %>
-      <%= f.text_field :username %>
-    </p>
-    <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </p>
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </p>
-    <p><%= f.submit %></p>
+<%# maybe I should put this modal into the main layout, and then load the content via ajax to maintain the DRY principle%>
+<p><a href="#registrationModal" role="button" class="btn btn-primary btn-large" data-toggle="modal">Register</a></p>
+<% if(flash[:registration_modal]) %>
+    <script>
+        $(document).ready(
+                function() {
+                    $("#registrationModal").removeClass('hide fade').modal('show'); //addClass('hide fade') funktioniert nicht... why?!
+
+                }
+        );
+    </script>
 <% end %>
+<div id="registrationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header" >
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Registration</h3>
+  </div>
+  <%= form_for(@user, class: 'form-horizontal') do |f| %>
+      <div class="modal-body">
+        <%= render partial: "shared/flashes", flash: flash %>
+        <div class="control-group">
+          <!--<%= f.label(I18n.translate(:username)) %>-->
+          <%= f.text_field(:username, placeholder: I18n.translate(:username)) %>
+        </div>
+        <div class="control-group">
+          <!--<%= f.label(I18n.translate(:password)) %>-->
+          <%= f.password_field(:password,  placeholder: I18n.translate(:password)) %>
+        </div>
+        <div class="control-group">
+          <!--<%= f.label(I18n.translate(:password_confirmation)) %>-->
+          <%= f.password_field(:password_confirmation, placeholder: I18n.translate(:password_confirmation)) %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <%= f.submit(value: I18n.translate(:register_submit), class: 'btn btn-primary') %>
+      </div>
+  <% end %>
+</div>

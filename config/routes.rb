@@ -6,7 +6,7 @@ FirstSteps::Application.routes.draw do
   get "login" => "sessions#new", as: "login"
   post "sessions" => "sessions#create", as: "sessions"
   delete "logout" => "sessions#destroy", as: "logout"
-  get "users/index"
+  get "users/index", as: "all_users"
   get "/" => "users#index", as: "index"
 
 

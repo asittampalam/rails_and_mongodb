@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   private
   def require_login
     unless user_signed_in?
-      render  "publicpages/public_index"
+      @user= User.new
+      render 'users/new'
     end
   end
   def current_user

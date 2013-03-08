@@ -1,4 +1,5 @@
 class User
+	embeds_one :wall
   include ActiveModel::SecurePassword
   include Mongoid::Document
   field :username, type: String
