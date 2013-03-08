@@ -64,5 +64,8 @@ module FirstSteps
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #Localization temporarily set as a fixed value.
+    config.i18n.default_locale= :en
   end
 end

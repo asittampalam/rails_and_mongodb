@@ -11,6 +11,10 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-responsive
- *= require_tree .
+ * Don't require require_tree - it requires more than it should.
  */
+
+ body{
+     padding-top: 40px; /*Avoids that the navbar overlaps content*/
+ }
 

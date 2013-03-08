@@ -13,4 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require_tree .
+// don't require "require_tree" - because It requires bootstrap.js AND bootstrap.min.js which leads to problems.

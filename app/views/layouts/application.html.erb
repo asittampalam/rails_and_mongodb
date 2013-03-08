@@ -7,7 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+        <ul class="nav">
+          <li class="brand">Whatever</li>
+          <li><a href="#"> Index</a></li>
+          <li><a href="#">All users</a></li>
+        </ul>
+        <% unless @current_user.present? %>
+            <%= form_tag({controller: 'sessions', action: 'create'}, {method: 'post', class: 'navbar-form pull-right'}) do %>
+                <%= text_field_tag(:username, I18n.translate(:username), {class: 'input-small'}) %>
+                <%= password_field_tag(:password,  I18n.translate(:password), {class: 'input-small'}) %>
+                <%= submit_tag(I18n.translate(:login_submit), {class: 'btn'}) %>
+            <% end %>
+         <% end %>
+    </div>
+  </div>
+</div>
+
 <%= render partial: "shared/flashes", flash: flash %>
+
 <div class="container">
     <%= yield %>
 </div>
@@ -15,6 +35,8 @@
       <%if user_signed_in? %>
         <%= link_to "logout", logout_path, method: :delete %>
       <%end%>
-    </div>
+  </div>
+
 </body>
+
 </html>

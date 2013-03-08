@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  username: "Username"
+  password: "Pasword"
+  password_confirmation: "Password confirmation"
+  register_submit: "Register"
+  login_submit: "Log in"

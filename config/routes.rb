@@ -1,4 +1,6 @@
 FirstSteps::Application.routes.draw do
+  get "publicpages/public_index"
+
   resources :users, only: [:new, :create]
 
   get "login" => "sessions#new", as: "login"
